@@ -1,5 +1,9 @@
 from agents.hospital_rag_agent import hospital_rag_agent_executor
 from fastapi import FastAPI
+import subprocess
+import uvicorn
+import time
+import streamlit as st
 from models.hospital_rag_query import HospitalQueryInput, HospitalQueryOutput
 from utils.async_utils import async_retry
 
@@ -34,3 +38,14 @@ async def query_hospital_agent(
     ]
 
     return query_response
+
+def run_uvicorn():
+    subprocess.Popen(["uvicorn", "main:app", "--host", "127.0.0.1", "--port", "8000"])
+
+host_ = st.button("Host Uvicorn")
+
+if host_:
+    run_uvicorn()
+    st.write("Uvicorn server is starting on port 8001...")
+    time.sleep(2)  # Wait a moment for the server to start
+    st.write("Uvicorn server should now be running on http://localhost:8001")
