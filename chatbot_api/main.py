@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from models.hospital_rag_query import HospitalQueryInput, HospitalQueryOutput
 from utils.async_utils import async_retry
 import uvicorn
+import asyncio
 
 app = FastAPI(
     title="Hospital Chatbot",
