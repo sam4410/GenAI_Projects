@@ -40,7 +40,7 @@ async def query_hospital_agent(
     return query_response
 
 def run_uvicorn():
-    subprocess.Popen(["uvicorn", "main:app", "--host", "127.0.0.1", "--port", "8000"])
+    subprocess.Popen(["uvicorn", "chatbot_api.main:app", "--host", "127.0.0.1", "--port", "8000"])
 
 host_ = st.button("Host Uvicorn")
 
