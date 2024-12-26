@@ -1,7 +1,5 @@
 from agents.hospital_rag_agent import hospital_rag_agent_executor
 from fastapi import FastAPI
-import subprocess
-import uvicorn
 from models.hospital_rag_query import HospitalQueryInput, HospitalQueryOutput
 from utils.async_utils import async_retry
 
@@ -36,11 +34,3 @@ async def query_hospital_agent(
     ]
 
     return query_response
-
-Host = True
-
-def run_uvicorn():
-    subprocess.Popen(["uvicorn", "pages.hosting_:app", "--host", "127.0.0.1", "--port", "8000"])
-
-if Host:
-    run_uvicorn()
