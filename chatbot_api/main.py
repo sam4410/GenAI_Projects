@@ -1,8 +1,10 @@
 from agents.hospital_rag_agent import hospital_rag_agent_executor
 from fastapi import FastAPI
-import streamlit as st
 from models.hospital_rag_query import HospitalQueryInput, HospitalQueryOutput
 from utils.async_utils import async_retry
+import subprocess
+import uvicorn
+import time
 
 app = FastAPI(
     title="Hospital Chatbot",
@@ -24,6 +26,10 @@ async def invoke_agent_with_retry(query: str):
 async def get_status():
     return {"status": "running"}
 
+def run_uvicorn():
+    subprocess.Popen(["uvicorn", "chatbot_api.main:app", "--host", "0.0.0.0", "--port", "8000"])
+
+run_unicorn()
 
 @app.post("/hospital-rag-agent")
 async def query_hospital_agent(
