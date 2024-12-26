@@ -27,7 +27,7 @@ async def get_status():
     return {"status": "running"}
 
 def run_uvicorn():
-    subprocess.Popen(["uvicorn", "chatbot_api.main:app", "--host", "0.0.0.0", "--port", "8000"])
+    subprocess.Popen(["uvicorn", "chatbot_api.main:app", "--host", "127.0.0.1", "--port", "8000"])
 
 run_unicorn()
 
