@@ -1,5 +1,6 @@
 import os
-
+import subprocess
+import uvicorn
 import requests
 import streamlit as st
 
@@ -78,6 +79,18 @@ st.info(
     """Ask me questions about patients, visits, insurance payers, hospitals,
     physicians, reviews, and wait times!"""
 )
+
+def run_uvicorn():
+    subprocess.Popen(["uvicorn", "pages.hosting_:app", "--host", "127.0.0.1", "--port", "8000"])
+
+host_ = st.button("Host Uvicorn")
+
+if host_:
+    run_uvicorn()
+    st.write("Uvicorn server is starting on port 8001...")
+    time.sleep(2)  # Wait a moment for the server to start
+    st.write("Uvicorn server should now be running on http://localhost:8001")
+
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
