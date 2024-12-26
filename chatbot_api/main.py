@@ -40,12 +40,12 @@ async def query_hospital_agent(
     return query_response
 
 def run_uvicorn():
-    subprocess.Popen(["uvicorn", "chatbot_api.main:app", "--host", "127.0.0.1", "--port", "8000"])
+    subprocess.Popen(["uvicorn", "chatbot_api.main:app", "--host", "0.0.0.0", "--port", "8000"])
 
 host_ = st.button("Host Uvicorn")
 
 if host_:
     run_uvicorn()
-    st.write("Uvicorn server is starting on port 8001...")
+    st.write("Uvicorn server is starting on port 8000...")
     time.sleep(2)  # Wait a moment for the server to start
-    st.write("Uvicorn server should now be running on http://localhost:8001")
+    st.write("Uvicorn server should now be running on http://localhost:8000")
