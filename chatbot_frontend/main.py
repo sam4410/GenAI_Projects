@@ -3,6 +3,7 @@ import subprocess
 import uvicorn
 import requests
 import streamlit as st
+import time
 
 CHATBOT_URL = os.getenv(
     "CHATBOT_URL", "http://localhost:8000/hospital-rag-agent"
@@ -81,7 +82,7 @@ st.info(
 )
 
 def run_uvicorn():
-    subprocess.Popen(["uvicorn", "pages.hosting_:app", "--host", "127.0.0.1", "--port", "8000"])
+    subprocess.Popen(["uvicorn", "main:app", "--host", "127.0.0.1", "--port", "8000"])
 
 host_ = st.button("Host Uvicorn")
 
