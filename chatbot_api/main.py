@@ -2,7 +2,6 @@ from agents.hospital_rag_agent import hospital_rag_agent_executor
 from fastapi import FastAPI
 from models.hospital_rag_query import HospitalQueryInput, HospitalQueryOutput
 from utils.async_utils import async_retry
-import subprocess
 import uvicorn
 import time
 
@@ -26,10 +25,10 @@ async def invoke_agent_with_retry(query: str):
 async def get_status():
     return {"status": "running"}
 
-def run_uvicorn():
-    subprocess.Popen(["uvicorn", "chatbot_api.main:app", "--host", "127.0.0.1", "--port", "8000"])
+def run_server():
+    uvicorn.run(app)
 
-run_unicorn()
+run_server()
 
 @app.post("/hospital-rag-agent")
 async def query_hospital_agent(
