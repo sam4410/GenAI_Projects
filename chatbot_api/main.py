@@ -3,7 +3,6 @@ from fastapi import FastAPI
 from models.hospital_rag_query import HospitalQueryInput, HospitalQueryOutput
 from utils.async_utils import async_retry
 import uvicorn
-import time
 
 app = FastAPI(
     title="Hospital Chatbot",
@@ -25,11 +24,6 @@ async def invoke_agent_with_retry(query: str):
 async def get_status():
     return {"status": "running"}
 
-def run_server():
-    uvicorn.run(app)
-
-run_server()
-
 @app.post("/hospital-rag-agent")
 async def query_hospital_agent(
     query: HospitalQueryInput,
@@ -40,3 +34,11 @@ async def query_hospital_agent(
     ]
 
     return query_response
+
+async def main():
+    config = uvicorn.Config("main:app", port=5000, log_level="info")
+    server = uvicorn.Server(config)
+    await server.serve()
+
+if __name__ == "__main__":
+    asyncio.run(main())
