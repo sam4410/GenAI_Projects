@@ -1,1 +1,1 @@
-web: python chatbot_api/main.py
+web: sh setup.sh && streamlit run app.py
